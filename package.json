@@ -1,9 +1,11 @@
 {
   "name": "dwssr-2026a",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "start": "node ./server/bin/www"
+    "start": "node ./server/bin/www",
+    "dev": "DEBUG=dwssr-2026a:server node ./server/bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
