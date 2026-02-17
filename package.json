@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server/bin/www",
-    "dev": "DEBUG=dwssr-2026a:server node ./server/bin/www"
+    "dev": "DEBUG=dwssr-2026a:server nodemon ./server/bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -14,5 +14,8 @@
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }
