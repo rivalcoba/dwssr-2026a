@@ -1,0 +1,6 @@
+// Punto de entrada principal para Vite
+// Importar estilos
+import './styles/main.css';
+
+// Tu código JavaScript aquí
+console.log('Vite + Express + Handlebars');
