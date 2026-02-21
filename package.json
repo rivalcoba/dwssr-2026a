@@ -9,7 +9,11 @@
     "dev:vite": "vite",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:vite\"",
     "build": "vite build",
-    "preview": "npm run build && npm run start"
+    "preview": "npm run build && npm run start",
+    "lint": "npm run lint:back && npm run lint:front",
+    "lint:back": "eslint \"server/**/*.{js,mjs}\"",
+    "lint:front": "eslint \"src/**/*.{js,mjs}\"",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,8 +24,13 @@
     "morgan": "^1.10.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "concurrently": "^9.2.1",
+    "eslint": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.3.0",
     "nodemon": "^3.1.11",
+    "prettier": "^3.8.1",
     "vite": "^7.3.1"
   },
   "imports": {
