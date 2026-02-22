@@ -1,9 +1,14 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   // Directorio raíz de los archivos fuente
   root: 'src',
+  // Plugins
+  plugins: [
+    tailwindcss(),
+  ],
 
   // Configuración del servidor de desarrollo
   server: {
