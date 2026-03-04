@@ -40,6 +40,11 @@ se desarrollara a lo largo del curso.
 **Ejemplo:** 
 > feat ✨: Agrega automatización de usuarios
 
+# 📚Stack
+
+## Back-end
+- [Node](./.github/doc/node.md)
+
 # 👤 Autor
 
 [Ivan Rivalcoba](https://github.com/rivalcoba)
