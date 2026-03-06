@@ -3,12 +3,14 @@ import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
-import logger from "morgan";
+import morgan from "morgan";
 import hbs from "hbs";
 
 import indexRouter from "#routes/index.js";
 import usersRouter from "#routes/users.js";
 import { registerViteHelper } from "./lib/vite.js";
+// Importando la configuracion de Winston para el logger
+import logger from "./lib/winston.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,7 +24,7 @@ app.set("view engine", "hbs");
 // Registrar helper de Vite para Handlebars
 registerViteHelper(hbs);
 
-app.use(logger("dev"));
+app.use(morgan('dev', { stream: logger.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
