@@ -87,35 +87,42 @@ const options = {
     handleExceptions: true,
     format: myConsoleFormat,
   },
+  readableFile: {
+    filename: path.join(logsDir, "app-readable.log"),
+    level: "info",
+    format: combine(
+      format.uncolorize(),
+      timestamp({ format: "DD-MM-YYYY HH:mm:ss" }),
+      prettyPrint(),
+    ),
+    maxsize: 5242880,
+    maxFiles: 5,
+  },
+  dailyRotateFile: {
+    filename: path.join(logsDir, "app-%DATE%.log"),
+    datePattern: "YYYY-MM-DD",
+    zippedArchive: true,
+    maxSize: "20m",
+    maxFiles: "14d",
+    level: "info",
+    format: myFileFormat,
+  },
 };
 
 // Se crea instancia de logger
-// Notas para la clase:
 // - Usamos un transport diario (`DailyRotateFile`) para el log principal
 //   que facilita retención por fecha y compresión de archivos.
 // - Mantenemos archivos separados para `warn` y `error` para alertas.
 // - `exceptionHandlers` y `rejectionHandlers` permiten capturar
 //   errores y promesas rechazadas no manejadas en archivos independientes.
 const logger = winston.createLogger({
+  // En esta linea se define el nivel mínimo de logeo,
+  // es decir, se logeará todo lo que sea igual o superior a este nivel
   transports: [
     // Log principal con rotación por fecha (ej: app-2026-03-05.log)
-    new DailyRotateFile({
-      filename: path.join(logsDir, "app-%DATE%.log"),
-      datePattern: "YYYY-MM-DD",
-      zippedArchive: true,
-      maxSize: "20m",
-      maxFiles: "14d",
-      level: "info",
-      format: myFileFormat,
-    }),
+    new DailyRotateFile(options.dailyRotateFile),
     // Archivo legible por humanos (útil para clase/demo)
-    new winston.transports.File({
-      filename: path.join(logsDir, "app-readable.log"),
-      level: "info",
-      format: combine(format.uncolorize(), timestamp({ format: "DD-MM-YYYY HH:mm:ss" }), prettyPrint()),
-      maxsize: 5242880,
-      maxFiles: 5,
-    }),
+    new winston.transports.File(options.readableFile),
     // Warn y error en archivos separados para procesos de alerta
     new winston.transports.File(options.warnFile),
     new winston.transports.File(options.errorFile),
