@@ -123,6 +123,8 @@ const logger = winston.createLogger({
     new DailyRotateFile(options.dailyRotateFile),
     // Archivo legible por humanos (útil para clase/demo)
     new winston.transports.File(options.readableFile),
+    // Archivo de nivel info
+    new winston.transports.File(options.infoFile),
     // Warn y error en archivos separados para procesos de alerta
     new winston.transports.File(options.warnFile),
     new winston.transports.File(options.errorFile),
