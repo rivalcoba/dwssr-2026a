@@ -27,4 +27,29 @@ router.get("/test-logs", function (req, res) {
   });
 });
 
+// Rutas de prueba para exceptions y rejections (solo en desarrollo)
+if (process.env.NODE_ENV !== "production") {
+  // Ruta para probar exceptionHandlers (excepción no capturada)
+  // Acceder a: GET /test-exception
+  // ADVERTENCIA: Esto lanza un error fuera del ciclo de Express,
+  // Winston lo captura en logs/exceptions.log y el proceso continúa (exitOnError: false)
+  router.get("/test-exception", function (req, res) {
+    res.json({ message: "Excepción lanzada. Revisa logs/exceptions.log" });
+    // setTimeout saca el throw fuera del middleware de Express,
+    // convirtiéndolo en una excepción no capturada (uncaughtException)
+    setTimeout(() => {
+      throw new Error("Excepción de prueba no capturada");
+    }, 100);
+  });
+
+  // Ruta para probar rejectionHandlers (promesa rechazada sin catch)
+  // Acceder a: GET /test-rejection
+  // Winston lo captura en logs/rejections.log
+  router.get("/test-rejection", function (req, res) {
+    res.json({ message: "Promesa rechazada. Revisa logs/rejections.log" });
+    // Promesa rechazada sin .catch() → unhandledRejection
+    Promise.reject(new Error("Promesa rechazada de prueba sin catch"));
+  });
+}
+
 export default router;
