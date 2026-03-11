@@ -3,9 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Proyecto Asombroso ✨',
-    author: 'Ivan Rivalcoba'
+  res.render('author', { 
+    name: 'Ivan',
+    lastname: 'Rivalcoba',
+    mail: 'jorge.rr@gamadero.tecnm.mx'
   });
 });
 
