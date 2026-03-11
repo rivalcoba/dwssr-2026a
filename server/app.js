@@ -24,7 +24,9 @@ app.set("view engine", "hbs");
 // Registrar helper de Vite para Handlebars
 registerViteHelper(hbs);
 
-app.use(morgan('dev', { stream: logger.stream }));
+// Morgan redirige sus logs a Winston como nivel informativo
+// Morgan --->[logs]---> Winston ---> [Logs a transportes informativos]
+app.use(morgan("dev", { stream: { write: (msg) => logger.info(msg.trim()) } }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
