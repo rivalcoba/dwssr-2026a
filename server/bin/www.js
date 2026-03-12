@@ -8,6 +8,9 @@ import app from "../app.js";
 import createDebug from "debug";
 import * as http from "node:http";
 
+// Importa winston para el logging
+import logger from "#server/lib/winston.js";
+
 const debug = createDebug("dwssr-2026a:server");
 
 /**
@@ -28,6 +31,7 @@ const server = http.createServer(app);
  */
 
 server.listen(port);
+logger.info(`Iniciando servidor en el puerto ${port}`);
 server.on("error", onError);
 server.on("listening", onListening);
 
@@ -65,11 +69,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case "EACCES":
-      console.error(bind + " requires elevated privileges");
+      logger.error(`${bind} requiere privilegios elevados`);
       process.exit(1);
       break;
     case "EADDRINUSE":
-      console.error(bind + " is already in use");
+      logger.error(`${bind} ya está en uso`);
       process.exit(1);
       break;
     default:
@@ -85,4 +89,5 @@ function onListening() {
   const addr = server.address();
   const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
+  logger.info(`Servidor escuchando en ${bind}`);
 }
