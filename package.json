@@ -14,12 +14,13 @@
     "lint:back": "eslint \"server/**/*.{js,mjs}\"",
     "lint:front": "eslint \"src/**/*.{js,mjs}\"",
     "lint:fix": "eslint . --fix",
-    "clean:logs" : "rm -rf ./server/logs/*.log"
+    "clean:logs": "rm -rf ./server/logs/*.log"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^5.2.1",
+    "express-handlebars": "^8.0.6",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "morgan": "^1.10.1",

@@ -4,11 +4,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-import hbs from "hbs";
 
 import indexRouter from "#routes/index.js";
 import usersRouter from "#routes/users.js";
-import { registerViteHelper } from "./lib/vite.js";
+// Importando el configurador de Handlebars para Express
+import { configureHandlebars } from "./lib/handlebars.js";
 // Importando la configuracion de Winston para el logger
 import logger from "./lib/winston.js";
 
@@ -19,11 +19,7 @@ const app = express();
 logger.info("Iniciando configuración de la aplicación");
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
-
-// Registrar helper de Vite para Handlebars
-registerViteHelper(hbs);
+configureHandlebars(app);
 
 // Morgan redirige sus logs a Winston como nivel informativo
 // Morgan --->[logs]---> Winston ---> [Logs a transportes informativos]
