@@ -47,9 +47,15 @@ app.use((req, res, next) => {
 // error handler
 app.use((err, req, res, _next) => {
   logger.error(`Error ${err.status || 500}: ${err.message}`);
-  // set locals, only providing error in development
+  // Pasamos un objeto plano para evitar warnings de acceso a prototipos en Handlebars.
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error =
+    req.app.get("env") === "development"
+      ? {
+          status: err.status || 500,
+          stack: err.stack,
+        }
+      : {};
 
   // render the error page
   res.status(err.status || 500);
