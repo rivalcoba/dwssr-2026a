@@ -20,3 +20,18 @@ arquitectura del proyecto.
 
 El presente proyecto esta desarrollado
 en expressJs.
+
+# 📦 ESM
+
+Los ECMAScript Modules (ESM) representan el estándar nativo
+para organizar y modularizar código de Javascript.
+El Express-Generator genera un proyecto usando el antigüo
+estándar llamado _CommonJS_ que usa las sentencias `require`
+en nuevo estándar usa `export/import`.
+
+Migrar a ESM ofrece las siguientes ventajas:
+
+- Sintaxis moderna y consistente
+- Mejor análisis estático**
+- Importaciones asíncronas con `import()`
+- Es el futuro del ecosistema
