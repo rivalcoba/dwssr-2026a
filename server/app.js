@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
-import indexRouter from "#routes/index.js";
+import { homeRouter, logsRouter } from "#routes/index.js";
 import usersRouter from "#routes/users.js";
 // Importando el configurador de Handlebars para Express
 import { configureHandlebars } from "./lib/handlebars.js";
@@ -35,8 +35,12 @@ if (process.env.NODE_ENV === "production") {
 // También servimos public para otros assets estáticos (imágenes, etc.)
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use("/", indexRouter);
+app.use("/", homeRouter);
 app.use("/users", usersRouter);
+
+if (process.env.NODE_ENV !== "production") {
+  app.use("/", logsRouter);
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

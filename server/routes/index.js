@@ -1,6 +1,7 @@
-
 import homeRouter from "../modules/home/home.routes.js";
-export default homeRouter;
+import logsRouter from "../modules/logs/logs.routes.js";
+
+export { homeRouter, logsRouter };
 
 // import express from "express";
 // import logger from "../lib/winston.js";
