@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
-import { homeRouter, diagnosticsRouter } from "#routes/index.js";
-import usersRouter from "#routes/users.js";
+// Importamos la función para agregar rutas a la aplicación
+import { addRoutes } from "#routes/index.js";
 // Importando el configurador de Handlebars para Express
 import { configureHandlebars } from "./lib/handlebars.js";
 // Importando la configuracion de Winston para el logger
@@ -35,12 +35,8 @@ if (process.env.NODE_ENV === "production") {
 // También servimos public para otros assets estáticos (imágenes, etc.)
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use("/", homeRouter);
-app.use("/users", usersRouter);
-
-if (process.env.NODE_ENV !== "production") {
-  app.use("/", diagnosticsRouter);
-}
+// Agregamos las rutas utilizando la función addRoutes
+addRoutes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
