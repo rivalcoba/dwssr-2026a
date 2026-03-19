@@ -2,11 +2,19 @@ import homeRouter from "../modules/home/home.routes.js";
 import diagnosticsRouter from "../modules/diagnostics/diagnostics.routes.js";
 import usersRouter from "../modules/users/users.routes.js";
 
-export function addRoutes(app) {
-  app.use("/", homeRouter);
-  app.use("/users", usersRouter);
+const domainRoutes = [
+  { basePath: "/", router: homeRouter },
+  { basePath: "/users", router: usersRouter },
+  {
+    basePath: "/",
+    router: diagnosticsRouter,
+    enabled: process.env.NODE_ENV !== "production",
+  },
+];
 
-  if (process.env.NODE_ENV !== "production") {
-    app.use("/", diagnosticsRouter);
+export function addRoutes(app) {
+  for (const { basePath, router, enabled = true } of domainRoutes) {
+    if (!enabled) continue;
+    app.use(basePath, router);
   }
 }
