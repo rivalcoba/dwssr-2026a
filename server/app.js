@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
-import { homeRouter, logsRouter } from "#routes/index.js";
+import { homeRouter, diagnosticsRouter } from "#routes/index.js";
 import usersRouter from "#routes/users.js";
 // Importando el configurador de Handlebars para Express
 import { configureHandlebars } from "./lib/handlebars.js";
@@ -39,7 +39,7 @@ app.use("/", homeRouter);
 app.use("/users", usersRouter);
 
 if (process.env.NODE_ENV !== "production") {
-  app.use("/", logsRouter);
+  app.use("/", diagnosticsRouter);
 }
 
 // catch 404 and forward to error handler
