@@ -1,3 +1,3 @@
 export function getHomeViewModel() {
-  return { title: "Express" };
+  return { title: "✍️ ProjNotes" };
 }

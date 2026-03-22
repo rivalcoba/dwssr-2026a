@@ -1,4 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui";
-/* Esta linea es  */
+/* Establece la fuente de las clases */
 @source "../../server/views/**/*.hbs";
+/* Importa el plugin de DaisyUI */
+@plugin "daisyui" {
+  themes: emerald --default, dark --prefersdark, cupcake;
+}
