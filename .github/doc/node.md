@@ -35,3 +35,13 @@ Migrar a ESM ofrece las siguientes ventajas:
 - Mejor análisis estático**
 - Importaciones asíncronas con `import()`
 - Es el futuro del ecosistema
+
+# 😈 Nodemon
+
+[Nodemon](https://nodemon.io/) es un paquete que actua como
+un _wrapper_ (envoltorio) para Node.Js
+Su función es observar archivos
+en el directorio de tu proyecto y
+reiniciar automáticamente la
+aplicación cuando detecta cambios
+guardados.
