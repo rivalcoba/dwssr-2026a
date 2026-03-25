@@ -6,9 +6,9 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 // Importando enrutadores
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
-import authorRouter from './routes/author.js';
+import indexRouter from '#routes/index.js';
+import usersRouter from '#routes/users.js';
+import authorRouter from '#routes/author.js';
 
 // Recreando variables de path
 const __filename = fileURLToPath(import.meta.url)
