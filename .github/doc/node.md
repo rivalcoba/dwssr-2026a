@@ -61,3 +61,10 @@ al directorio _server_:
 * 📂 routes
 * 📂 views
 * 📄 app.js
+
+# Loggers
+_Winston-daily-rotate-file_ es un transporte de winston
+que permite la rotación automatica de archivos de logs
+basada en fechas.
+Esto evita que los archivos de log crezcan
+sin control.
