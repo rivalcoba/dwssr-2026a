@@ -1,5 +1,5 @@
 // importando biblioteca winston
-import winston, { format, level } from "winston";
+import winston, { format } from "winston";
 import path from "node:path";
 import fs from "node:fs";
 // Importando biblioteca de transporte
@@ -93,3 +93,40 @@ const options = {
     format: myFileFormat,
   },
 };
+
+// Creando el una instancia del Logger
+/*
+  Usaremos un transport diario (DailyRotateFile) para
+  el log principal, esto facilita la retencion
+  por fecha y la compresión de archivos.
+
+  Para los demas logs mantenemos archivos separados.
+*/
+
+const logger = winston.createLogger({
+  transports: [
+    // Log principal con rotacion por fecha
+    new DailyRotateFile(options.dailyRotateFile),
+    // Archivo legible para humanos
+    new winston.transports.File(options.readableFile),
+    // Log de errores en un archivo por separado
+    new winston.transports.File(options.errorFile),
+    // Log para la consola de desarrollo (colores, y formato)
+    new winston.transports.Console(options.console),
+  ],
+  // Captura de excepciones
+  exceptionHandlers: [
+    new winston.transports.File({
+      filename: path.join(logsDir, "exception.log"),
+    }),
+  ],
+  rejectionHandlers: [
+    new winston.transports.File({
+      filename: path.join(logsDir, "rejection.log"),
+    }),
+  ],
+  exitOnError: false,
+});
+
+// Finalmente exportamos el logger
+export default logger;
