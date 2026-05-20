@@ -4,16 +4,17 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+
 // Importando Winston Logger
 import logger from './lib/winston.js'
-import hbs from 'hbs';
 
 // Importando enrutadores
 import indexRouter from '#routes/index.js';
 import usersRouter from '#routes/users.js';
 import authorRouter from '#routes/author.js';
-// Importando el registrador de Helpers
-import { registerViteHelper } from './lib/vite.js';
+
+// Importando el condigurador de handlebars
+import { configureHandlebars } from "./lib/handlebars.js"
 
 // Recreando variables de path
 const __filename = fileURLToPath(import.meta.url)
@@ -22,13 +23,7 @@ const __dirname = path.dirname(__filename)
 logger.info("Creando la instancia de expressjs")
 var app = express();
 logger.info("Inicia configuración de express")
-
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-// Registrando Helpers para el ENGINE
-registerViteHelper(hbs)
+configureHandlebars(app)
 
 // Redirigiendo el flujo de logs de morgan
 // a Winston
