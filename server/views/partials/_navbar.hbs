@@ -1,8 +1,10 @@
 <!-- Barra de navegación -->
 <nav class="navbar bg-primary text-primary-content shadow-md">
+  <!-- Logo y título -->
   <div class="navbar-start">
     <div class="flex-none lg:hidden">
       <label for="mobile-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
+        <!-- Icono de menú hamburguesa -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -23,8 +25,11 @@
       <span class="text-xl font-bold tracking-wide">DWSSR</span>
     </a>
   </div>
+  <!-- Menú de navegación -->
   <div class="navbar-end hidden lg:flex">
+    <!-- Aquí irían los enlaces de navegación, dropdowns, etc. -->
     <ul class="menu menu-horizontal px-1 gap-1">
+      <!-- Inicio -->
       <li>
         <a href="#" class="hover:text-white font-medium flex items-center gap-2">
           <span>Inicio</span>
@@ -35,6 +40,7 @@
           </svg>
         </a>
       </li>
+      <!-- Proyectos -->
       <li>
         <div class="dropdown">
           <a
@@ -43,6 +49,7 @@
             href="#"
             class="hover:text-white font-medium flex items-center gap-2"
           >
+            <!-- Menu de proyectos -->
             <span>Proyectos</span>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -55,10 +62,12 @@
               />
             </svg>
           </a>
+          <!-- Submenu de proyectos -->
           <ul
             tabindex="0"
             class="dropdown-content menu bg-base-100 text-base-content rounded-box z-10 mt-2 w-44 p-2 shadow"
-            style="left: -1rem; right: auto;">
+            style="left: -1rem; right: auto;"
+          >
             <li>
               <a href="#" class="flex items-center gap-2">
                 <svg
@@ -74,6 +83,7 @@
                     d="M3.75 6.75h16.5m-16.5 5.25h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
+                <!-- Opcion Listas -->
                 <span>Listas</span>
               </a>
             </li>
@@ -88,12 +98,14 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
+                <!-- Opcion Crear -->
                 <span>Crear</span>
               </a>
             </li>
           </ul>
         </div>
       </li>
+      <!-- Usuarios -->
       <li>
         <div class="dropdown">
           <a
@@ -171,6 +183,7 @@
           </ul>
         </div>
       </li>
+      <!-- Acerca de -->
       <li>
         <a href="#" class="hover:text-white font-medium flex items-center gap-2">
           <span>Acerca de</span>
