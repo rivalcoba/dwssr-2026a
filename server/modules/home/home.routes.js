@@ -1,8 +1,15 @@
 import express from "express";
-import { renderHome } from "./home.controller.js";
+import { renderHome, about } from "./home.controller.js";
 
 const router = express.Router();
 
-router.get("/", renderHome);
+// Enrutamos
+// GET '/'
+// GET '/home'
+// GET '/index
+router.get(['/', '/home', '/index'], renderHome);
+
+// GET '/about' - Muestra la página de información
+router.get("/about", about);
 
 export default router;

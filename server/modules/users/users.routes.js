@@ -1,7 +1,7 @@
 import express from "express";
 
 // Importando los controladores de usuarios
-import { getUsers } from "./users.controller.js";
+import { getUsers, login, logout, register } from "./users.controller.js";
 
 // Importando el Router de express para 
 // poder establecer las rutas

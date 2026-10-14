@@ -1,10 +1,12 @@
 import homeRouter from "../modules/home/home.routes.js";
 import diagnosticsRouter from "../modules/diagnostics/diagnostics.routes.js";
 import usersRouter from "../modules/users/users.routes.js";
+import projectsRouter from "../modules/projects/projects.routes.js";
 
 const domainRoutes = [
-  { basePath: "/", router: homeRouter },
-  { basePath: "/users", router: usersRouter },
+  { basePath: "/", router: homeRouter, enabled: true },
+  { basePath: "/users", router: usersRouter, enabled: true },
+  { basePath: "/projects", router: projectsRouter, enabled: true },
   {
     basePath: "/",
     router: diagnosticsRouter,
@@ -12,8 +14,8 @@ const domainRoutes = [
   },
 ];
 
-function validateRouteConfig(config, index) {
-  const { basePath, router, enabled } = config;
+function validateRouteConfig(route, index) {
+  const { basePath, router, enabled } = route;
 
   if (typeof basePath !== "string" || basePath.length === 0) {
     throw new TypeError(`domainRoutes[${index}].basePath debe ser un string no vacío`);
