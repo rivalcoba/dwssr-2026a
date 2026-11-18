@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { create as createHbsEngine } from "express-handlebars";
 
 import { registerViteHelper } from "./vite.js";
+import { registerIconHelper } from "./icons.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +20,9 @@ export function configureHandlebars(app) {
   // Registramos el helper personalizado "vite" 
   // para generar URLs de assets con Vite
   registerViteHelper(exphbs.handlebars);
+
+  // Registramos el helper "randomIcon" para mostrar un icono aleatorio
+  registerIconHelper(exphbs.handlebars);
 
   // Configuramos Express para usar Handlebars como motor de vistas
   app.engine("hbs", exphbs.engine);
