@@ -6,5 +6,5 @@ export const about = (req, res) => {
 
 export const renderHome = (req, res) => {
   const viewModel = getHomeViewModel();
-  res.render("index", viewModel);
+  res.render("home/index", viewModel);
 }

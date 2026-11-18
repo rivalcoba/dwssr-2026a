@@ -1,3 +1,8 @@
 export function getHomeViewModel() {
-  return { title: "✍️ ProjNotes" };
+  const iconSet = ["⭐", "🤖", "🍉", "📲", "🪸", "🌠", "🦾"];
+  const icon = iconSet[Math.floor(Math.random() * iconSet.length)];
+  return {
+    title: "✍️ ProjNotes",
+    icon,
+  };
 }
